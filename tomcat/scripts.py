@@ -45,7 +45,9 @@ def create_option_parser(usage, epilog=None):
 def add_restart_options(parser):
     parser.add_option("--restart-fraction", default=0.33, type="float", dest="restart_fraction",
                       help="Fraction of the cluster nodes rebooted at the same time (e.g. 0.33)")
-    return [ 'restart_fraction' ]
+    parser.add_option("--restart-timeout", default=600, type="int", dest="restart_timeout",
+                      help="Seconds after which restart will timeout")
+    return ['restart_fraction', 'restart_timeout']
 
 def extract_options(keys, opts):
     values = map(lambda x: getattr(opts, x), keys)
