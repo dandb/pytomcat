@@ -271,7 +271,7 @@ class ClusterDeployer:
         opts = { 'abort_on_error': True, 'threads': threads }
         if hosts:
             opts['hosts'] = hosts
-        rv = self.c.run_command('restart', **opts)
+        rv = self.c.run_command('restart', self.restart_timeout, **opts)
         if rv.has_failures:
             self.log.error("There were failed applications after restart")
             sys.exit(1)
